@@ -1,0 +1,26 @@
+application: drive-calm
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+
+#- url: /
+#  script: main.py
+
+#- url: /trigger
+#  script: trigger.py
+
+#- url: /pusher/auth
+#  script: pusher_auth.py
+
+#- url: /pusher/presence_auth
+#  script: pusher_presence_auth.py  
+
+- url: /
+  static_files: led_scrollerv2/index.html
+  upload: led_scrollerv2/index\.html
+
+- url: /
+  static_dir: led_scrollerv2
+  

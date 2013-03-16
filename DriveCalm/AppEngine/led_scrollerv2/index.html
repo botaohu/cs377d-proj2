@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes" />
+
+		<title>LED Scroller</title>
+		 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://js.pusherapp.com/1.10/pusher.min.js"></script>
+    <script>
+    	Pusher.log = function(msg) {
+    		if(console && console.log) {
+    			console.log(msg);
+    		}
+    	}
+
+    	$(function() {
+    		var pusher = new Pusher('b243166ec0263612dcde');
+    		var channel = pusher.subscribe('test_channel');
+    		channel.bind('my_event', function(data) {
+	    		$('#text').val(data);
+	    		startAnim();
+    		}); 		
+    	});
+    </script>
+		<script src='led_scroller.js'></script>
+		<link rel="stylesheet" type="text/css" href="led_scroller.css" media="all" />
+	</head>
+	<body onload='init();'>
+		<div>
+			<div id='container'>
+				<input type="text" id='text' value="Thank you!" />
+				<a id='imgLink' href="javascript:startAnim();"> <img src="go.jpg" alt='Go'/> </a>
+			</div>
+			<canvas id="led" width="900" height="350"></canvas>
+		</div>
+	</body>
+</html>
